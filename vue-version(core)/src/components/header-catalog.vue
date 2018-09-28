@@ -3,7 +3,9 @@
     <div class="container">
       <div class="row justify-content-between align-items-center">
         <div class="col-md-4 offset-md-4 logo">
-          <img :src="logo" alt="">
+          <router-link to='/'>
+            <img :src="logo" alt="">
+          </router-link>
         </div>
         <div class="col-md-auto col-sm-12 justify-content-end d-flex">
           <auth-trigger />

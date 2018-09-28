@@ -3,7 +3,7 @@
       <div class="product__image"><img :src="product.img" :alt="product.title"></div>
       <div class="product__title"><a href="#">{{product.title}}</a></div>
       <div class="product__action">
-        <btn-primary :text='"Оценить"'/>
+        <btn-primary :text='"Оценить"' @click='link'/>
       </div>
     </div>
 </template>
@@ -17,6 +17,11 @@ export default {
     product: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    link () {
+      this.$router.push('/product/' + this.product.id)
     }
   }
 }

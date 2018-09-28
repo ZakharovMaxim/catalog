@@ -4,5 +4,8 @@ export default {
   },
   setFilter (state, filter) {
     state.filter = filter
+  },
+  setProduct (state, product) {
+    state.product = product
   }
 }
