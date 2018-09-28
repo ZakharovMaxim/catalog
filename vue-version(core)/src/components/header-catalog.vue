@@ -4,7 +4,7 @@
       <div class="row justify-content-between align-items-center">
         <div class="col-md-4 offset-md-4 logo">
           <router-link to='/'>
-            <img :src="logo" alt="">
+            <logo />
           </router-link>
         </div>
         <div class="col-md-auto col-sm-12 justify-content-end d-flex">
@@ -15,16 +15,11 @@
   </header>
 </template>
 <script>
-import logo from '@/assets/logo.svg'
 import authTrigger from './auth-trigger'
+import logo from './logo'
 export default {
   name: 'header-catalog',
-  data () {
-    return {
-      logo
-    }
-  },
-  components: {authTrigger}
+  components: {authTrigger, logo}
 }
 </script>
 
@@ -32,6 +27,7 @@ export default {
 header
   box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05)
   padding: 30px 0
+  background: #fff
 .logo
   text-align: center
 </style>
