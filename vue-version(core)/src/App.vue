@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <auth-page v-if='showLogin' />
+    <auth-page v-if='showLogin && !token' />
     <header-catalog />
     <main>
       <router-view />
@@ -9,15 +9,23 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 import headerCatalog from '@/components/header-catalog'
 import authPage from '@/components/auth-page'
 export default {
   name: 'App',
   components: {headerCatalog, authPage},
   computed: {
+    ...mapGetters(['token']),
     showLogin () {
       return this.$route.query.login
     }
+  },
+  created () {
+    this.initializeToken()
+  },
+  methods: {
+    ...mapActions(['initializeToken'])
   }
 }
 </script>

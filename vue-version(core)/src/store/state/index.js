@@ -1,5 +1,6 @@
 export default {
   products: [],
   filter: '',
-  product: {}
+  product: {},
+  token: null
 }

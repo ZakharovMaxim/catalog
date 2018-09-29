@@ -1,11 +1,12 @@
 <template>
-  <div class="auth-trigger d-flex align-items-center" @click='open'>
+  <div class="auth-trigger d-flex align-items-center" @click='triggered'>
     <img :src="account" alt="">
-    <span>Войти</span>
+    <span>{{text}}</span>
   </div>
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 import account from '@/assets/account-btn.svg'
 export default {
   name: 'auth-trigger',
@@ -14,9 +15,17 @@ export default {
       account
     }
   },
+  computed: {
+    ...mapGetters(['token']),
+    text () {
+      return this.token ? 'Выйти' : 'Войти'
+    }
+  },
   methods: {
-    open () {
-      this.$router.replace({query: {'login': true}})
+    ...mapActions(['logout']),
+    triggered () {
+      if (this.token) this.logout()
+      else this.$router.replace({query: {'login': true}})
     }
   }
 }

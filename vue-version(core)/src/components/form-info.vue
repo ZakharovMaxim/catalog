@@ -45,6 +45,7 @@ export default {
     background-size: cover
     padding: 91px 25px 80px 25px
     color: #fff
+    background: #000
     &__title
       font-size: 32px
       font-weight: bold

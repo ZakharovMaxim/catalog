@@ -1,5 +1,5 @@
 <template>
-  <button @click='$emit("click")'>
+  <button @click='$emit("click")' :class='{loading}' :disabled='loading'>
     <span>{{text}}</span>
     <span class='icon'>
       <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,8 @@ export default {
   props: {
     text: {
       default: 'Кнопка'
-    }
+    },
+    loading: Boolean
   }
 }
 </script>
@@ -31,6 +32,8 @@ button
   border-radius: 90px
   color: #fff
   cursor: pointer
+  &.loading
+    background: darken($primary-color, 10%)
   span.icon
     position: absolute
     top: 50%

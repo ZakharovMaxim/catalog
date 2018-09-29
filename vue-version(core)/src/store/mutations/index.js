@@ -7,5 +7,9 @@ export default {
   },
   setProduct (state, product) {
     state.product = product
+  },
+  setToken (state, token) {
+    state.token = token
+    localStorage.setItem('token', token)
   }
 }
