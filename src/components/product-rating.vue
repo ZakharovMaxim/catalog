@@ -43,11 +43,18 @@ export default {
     }
   },
   methods: {
+    /**
+     * return the percentage of ratings
+     * @param {Number} count count of same rates
+     */
     percent (count) {
       return count / this.rating.totalCount * 100 || 0
     }
   },
   computed: {
+    /**
+     * return average rate
+     */
     average () {
       return +(
         this.rating.totalRating / this.rating.totalCount

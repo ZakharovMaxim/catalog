@@ -24,12 +24,26 @@ export default {
       reverse: false
     }
   },
+  pagetitle: 'Авторизация',
+  beforeCreate () {
+    this.lastTitle = document.title
+  },
   methods: {
+    /**
+     * changes the position of blocks, if reverse is true then registration block is on the right side and text on left
+     * else login block on left side and text will be right
+     */
     changeDirection () {
       this.reverse = !this.reverse
     },
+    /**
+     * close auth form, if directly clicked on parent block then close
+     */
     close (e) {
-      if (e.target === e.currentTarget) this.$router.replace({query: ''})
+      if (e.target === e.currentTarget) {
+        document.title = this.lastTitle
+        this.$router.replace({query: ''})
+      }
     }
   }
 }

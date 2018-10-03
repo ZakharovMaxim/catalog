@@ -1,13 +1,13 @@
 <template>
-  <div class="filters__list">
+  <div class="sorts__list">
     <ul>
       <li
-        v-for='(f, i) in filters'
+        v-for='(s, i) in list'
         :key='i'
-        :class='{"active": i === filter}'
-        @click='setFilter(i)'
+        :class='{"active": i === sort}'
+        @click='setSort(i)'
         >
-          {{f.text}}
+          {{s.text}}
         </li>
     </ul>
   </div>
@@ -15,27 +15,27 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import filters from '../strategies/sortStrategies'
 export default {
-  name: 'filter-list',
-  data () {
-    return {
-      filters
-    }
-  },
+  name: 'sort-list',
   methods: {
-    setFilter (filter) {
-      this.$store.dispatch('setFilter', filter)
+    setSort (sort) {
+      this.$store.dispatch('setSort', sort)
     }
   },
   computed: {
-    ...mapGetters(['filter'])
+    ...mapGetters(['sort'])
+  },
+  props: {
+    list: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-.filters__list
+.sorts__list
   ul
     display: flex
     li

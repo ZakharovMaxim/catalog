@@ -29,19 +29,34 @@ export default {
     }
   },
   watch: {
+    /**
+     * change starsCount if selected was changed
+     * help fix bug then you select stars, but hover on less rate would remove the selected stars
+     */
     selected (n) {
       this.starsCount = n
     }
   },
   methods: {
+    /**
+     * fill stars on hover, if stars count less then selected nothing goes to change
+     * @param {Number} n stars count
+     */
     hover (n) {
       if (!this.selectable) return
       this.starsCount = n < this.selected ? this.selected : n
     },
+    /**
+     * set stars count equal selected when mouse leave the parent block
+     */
     leave () {
       if (!this.selectable) return
       this.starsCount = this.selected
     },
+    /**
+     * set selected stars and send data to parent component
+     * @param {Number} n selected number
+     */
     select (n) {
       if (!this.selectable) return
       this.starsCount = n
@@ -56,6 +71,9 @@ export default {
     selectable: Boolean
   },
   computed: {
+    /**
+     * @returns width in procent of rect which fill the stars
+     */
     width () {
       return this.starsCount / 5 * 100 + '%'
     },
@@ -77,19 +95,19 @@ svg
   &.selectable
     path
       cursor: pointer
-  .selected-1
-    path:first-child
-      fill: $primary-color
-  .selected-2
-    path:first-child, path:nth-child(2)
-      fill: $primary-color
-  .selected-3
-    path:first-child, path:nth-child(2), path:nth-child(3)
-      fill: $primary-color
-  .selected-4
-    path:first-child, path:nth-child(2), path:nth-child(3), path:nth-child(4)
-      fill: $primary-color
-  .selected-5
-    path:first-child, path:nth-child(2), path:nth-child(3), path:nth-child(4), path:nth-child(5)
-      fill: $primary-color
+    .selected-1
+      path:first-child
+        fill: $primary-color
+    .selected-2
+      path:first-child, path:nth-child(2)
+        fill: $primary-color
+    .selected-3
+      path:first-child, path:nth-child(2), path:nth-child(3)
+        fill: $primary-color
+    .selected-4
+      path:first-child, path:nth-child(2), path:nth-child(3), path:nth-child(4)
+        fill: $primary-color
+    .selected-5
+      path:first-child, path:nth-child(2), path:nth-child(3), path:nth-child(4), path:nth-child(5)
+        fill: $primary-color
 </style>

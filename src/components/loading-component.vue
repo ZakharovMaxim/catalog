@@ -29,6 +29,10 @@ export default {
       }
     }
   },
+  /**
+   * component take callback whick returns promise, if promise resolved, show content otherwise show error,
+   * while promise is pending show loading component
+   */
   created () {
     this.callback().then(() => {
       this.loading = false

@@ -1,17 +1,17 @@
 import Vue from 'vue'
-import error from '@/components/error'
+import errorMessage from '@/components/error-message'
 
 function getRenderedText (Component, propsData) {
   const Constructor = Vue.extend(Component)
   const vm = new Constructor({ propsData: propsData }).$mount()
-  return vm.$el.textContent
+  return vm.$el.textContent.trim()
 }
 
-describe('error.vue', () => {
+describe('error-message.vue', () => {
   it('render correctly with different props', () => {
-    expect(getRenderedText(error, {
+    expect(getRenderedText(errorMessage, {
       text: 'Some error'
     })).to.equal('Some error')
-    expect(getRenderedText(error)).to.equal('Ошибка')
+    expect(getRenderedText(errorMessage)).to.equal('')
   })
 })

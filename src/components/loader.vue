@@ -1,5 +1,5 @@
 <template>
-  <div class="loading">
+  <div class="loader">
     <svg :width='2 * r' :height='2 * r' viewbox='0 0 50 50' :stroke-dasharray='l' :stroke-dashoffset='50' :stroke-width='stroke'>
       <circle :cx='r' :cy='r' :r='r - stroke' />
     </svg>
@@ -16,6 +16,9 @@ export default {
     }
   },
   computed: {
+    /**
+     * calculate circle length
+     */
     l () {
       return Math.PI * 2 * (this.r - this.stroke / 2)
     }
@@ -24,7 +27,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .loading
+  .loader
     text-align: center
     width: 100%
     svg

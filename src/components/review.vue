@@ -25,7 +25,7 @@
 <script>
 import userLogo from '@/assets/green_small_mouth-512.png'
 import reviewStars from './review-stars'
-import {formatDate} from '../libs/moment'
+import {formatDate} from '../tools/moment'
 export default {
   name: 'review',
   data () {

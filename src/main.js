@@ -4,8 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import {store} from './store'
+import titleMixin from './mixins/titleMixin'
 Vue.config.productionTip = false
-
+Vue.mixin(titleMixin)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

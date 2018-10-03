@@ -23,6 +23,9 @@ export default {
   },
   methods: {
     ...mapActions(['logout']),
+    /**
+     * open login page or trigger logout action
+     */
     triggered () {
       if (this.token) this.logout()
       else this.$router.replace({query: {'login': true}})

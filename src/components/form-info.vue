@@ -19,7 +19,7 @@ export default {
       text: [
         {
           title: 'Еще не с нами!',
-          text: 'Давайте в нашу уютную осминожную компанию. Проводить вечера как брюзга оценивая всякие полезные *что угодно*.',
+          text: 'Давайте в нашу уютную осминожную компанию. Проводить вечера как брюзга, оценивая всякие полезные *что угодно*.',
           button: 'Регистрация'
         },
         {
@@ -68,7 +68,7 @@ export default {
     &__text
       font-size: 14px
       margin-bottom: 60px
-@media screen and (max-width: 768px)
+@media screen and (max-width: 767px)
   .info
     display: none
 </style>

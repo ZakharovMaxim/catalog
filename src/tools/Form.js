@@ -14,12 +14,18 @@ export default class Form {
     errors['form'] = ''
     this.errors = new Errors(errors)
   }
+  /**
+   * reset all form fields
+   */
   reset () {
     for (let field in this.originalData) {
       this[field] = ''
     }
     this.errors.reset()
   }
+  /**
+   * return only data what should be sended on server
+   */
   data () {
     let r = Object.assign({}, this)
     delete r.originalData
@@ -27,18 +33,35 @@ export default class Form {
     delete r.validations
     return r
   }
+  /**
+   * change validation rule
+   * @param {String} fieldName
+   * @param {String} ruleName
+   * @param {any} value
+   */
+  changeValidateRule (fieldName, ruleName, value) {
+    this.validations[fieldName][ruleName] = value
+  }
+  /**
+   * iterate all validations rules and add error if some fields have errors
+   * @param {Object} data data to check
+   */
   validate (data) {
     const rules = this.validations
-
     for (let field in rules) {
       const rule = rules[field]
       if (rule.ignore) continue
-      if (rule.max && data[field].length > rule.max) this.error.setOne(field, 'Максимальная длина ' + rule.max + ' символов')
+      if (rule.max && data[field].length > rule.max) this.errors.setOne(field, 'Максимальная длина ' + rule.max + ' символов')
       if (rule.max && data[field].length < rule.min) this.errors.setOne(field, 'Минимальная длина ' + rule.min + ' символов')
       if (rule.required && !data[field]) this.errors.setOne(field, 'Поле обязательно для заполнения')
-      if (rule.confirm && data[rule.confirm.field] !== data[field]) this.errors.setOne(field, rule.confirm.errorMsg)
+      if (rule.confirm && data[rule.confirm.field] !== data[field]) this.errors.setOne(field, rule.confirm.errorMsg || 'Поля не совпадают')
     }
   }
+  /**
+   * validate all fields, check for errors and exec callback
+   * @param {Function} callback
+   * @returns {any}
+   */
   submit (callback) {
     const data = this.data()
     Object.assign(this.originalData, this.data())

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <loading-component :callback='() => setProduct($route.params.id)' :props='{id: product.id}'>
+      <loading-component :callback='callback()' :props='{id: product.id}'>
       <div class="product-page__content">
         <div class="product-page__title">
          {{product.title}}
@@ -46,8 +46,14 @@ export default {
   computed: {
     ...mapGetters(['productRating', 'product', 'token'])
   },
+  pagetitle: 'Оцените продукт',
   methods: {
-    ...mapActions(['setProduct'])
+    ...mapActions(['setProduct']),
+    callback () {
+      return () => {
+        return this.setProduct(this.$route.params.id)
+      }
+    }
   },
   components: {reviewList, productRating, newReview, loadingComponent}
 }

@@ -2,7 +2,7 @@
   <div class='row flex-column align-items-center new-review'>
     <error-message :text='error' v-if='error' />
     <div class="success" v-if='success'>Отзыв успешно добавлен</div>
-    <review-stars :selectable='true' @select='setStarts' :stars='rate'/>
+    <review-stars :selectable='true' @select='setStars' :stars='rate'/>
     <textarea placeholder='Оставьте Ваш отзыв' v-model='text' @keydown.prevent.enter='submit'></textarea>
     <btn-primary :text='"Добавить"' @click='submit' :loading='loading'/>
   </div>
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     ...mapActions(['newReview']),
-    setStarts (n) {
+    setStars (n) {
       this.rate = n
     },
     submit () {
@@ -71,4 +71,5 @@ export default {
     margin-bottom: 15px
   .success
     color: #228b22
+    font-size: 10px
 </style>

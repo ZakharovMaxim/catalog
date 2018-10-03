@@ -19,11 +19,17 @@ export default {
   },
   props: ['reverse'],
   computed: {
+    /**
+     * +!!this.reverse return 0 or 1, so will be returned titles[0] or titles[1]
+     */
     title () {
       return this.titles[+!!this.reverse]
     }
   },
   methods: {
+    /**
+     * change block positions
+     */
     changeDirection () {
       this.$emit('changeDirection')
     }

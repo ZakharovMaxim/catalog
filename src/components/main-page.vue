@@ -8,6 +8,7 @@
 import productList from './product-list'
 export default {
   name: 'main-page',
-  components: {productList}
+  components: {productList},
+  pagetitle: 'Каталог'
 }
 </script>

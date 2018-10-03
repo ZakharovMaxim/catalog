@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class='{"auth": showLogin && !token}'>
-    <auth-page v-if='showLogin && !token' />
+    <auth-page v-if='showLogin' />
     <header-catalog />
     <main>
       <router-view />
@@ -18,7 +18,7 @@ export default {
   computed: {
     ...mapGetters(['token']),
     showLogin () {
-      return this.$route.query.login
+      return this.$route.query.login && !this.token
     }
   },
   created () {

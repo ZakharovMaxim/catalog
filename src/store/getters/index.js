@@ -3,19 +3,26 @@ export default {
   products (state) {
     return state.products
   },
-  filter (state) {
-    return state.filter
+  sort (state) {
+    return state.sort
   },
-  filteredProducts (state) {
-    const filter = state.filter
-    const strategy = strategies[filter]
-    if (!filter || !strategy) return state.products
+  /**
+   * get all strategies from file and get current sort from store
+   * @returns {Array} sortedProducts
+   */
+  sortedProducts (state) {
+    const sort = state.sort
+    const strategy = strategies[sort]
+    if (!sort || !strategy) return state.products
 
     return state.products.sort(strategy.callback)
   },
   product (state) {
     return state.product
   },
+  /**
+   * iterates over the array and returns an object with statistical rating indicators
+   */
   productRating (state) {
     const product = state.product
     const result = {

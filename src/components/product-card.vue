@@ -19,6 +19,10 @@ export default {
       required: true
     }
   },
+  /**
+   * redirect on product page
+   * @deprecated
+   */
   methods: {
     link () {
       this.$router.push('/product/' + this.product.id)

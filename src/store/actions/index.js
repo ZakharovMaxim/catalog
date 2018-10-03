@@ -1,11 +1,20 @@
 import axios from '../../configs/axiosConfig'
 
 export default {
+  /**
+   * fetch product list from api
+   * @returns {Promise}
+   */
   setProducts ({commit}) {
     return axios.get('/products').then((data) => {
       commit('setProducts', data.data)
     })
   },
+  /**
+   * fetch product from api by id
+   * @param {Number} id product identifier
+   * @returns {Promise}
+   */
   setProduct ({commit}, id) {
     let products = []
     return axios.get('/products').then((data) => {
@@ -18,17 +27,23 @@ export default {
       commit('setProduct', product)
     })
   },
-  setFilter ({commit}, filter) {
-    commit('setFilter', filter)
+  /**
+   * set sort name
+   * @param {String} sort sort name
+   */
+  setSort ({commit}, sort) {
+    commit('setSort', sort)
   },
+  /**
+   * set login request to api
+   * @param {Object} payload object whick contains login and password fields
+   * @returns {Promise}
+   */
   login ({commit}, payload) {
     return axios.post('/login/', payload)
       .then(data => {
         if (!data.data.success) {
-          throw new Error({
-            status: 422,
-            message: 'Неверные данные'
-          })
+          throw new Error('Неверные данные')
         }
         commit('setToken', {
           token: data.data.token || '',
@@ -36,16 +51,26 @@ export default {
         })
       })
   },
+  /**
+   * set registration request to api
+   * @param {Object} payload object whick contains login and password fields
+   * @returns {Promise}
+   */
   registration ({commit}, payload) {
     return axios.post('/register/', payload)
       .then(data => {
-        // if (!data.data.success) Promise.reject()
+        if (!data.data.success) {
+          throw new Error(data.data.message)
+        }
         commit('setToken', {
           token: data.data.token,
           login: payload.username
         })
       })
   },
+  /**
+   * get token and login from localstorage
+   */
   initializeToken ({commit}) {
     const token = localStorage.getItem('token')
     const login = localStorage.getItem('login')
@@ -54,9 +79,17 @@ export default {
       login
     })
   },
+  /**
+   * remove token and login from localstorage and store
+   */
   logout ({commit}) {
     commit('setToken', '')
   },
+  /**
+   * send post request to api for create new review
+   * @param {Object} payload object whick contains rate and text fields
+   * @return {Promise}
+   */
   newReview (vx, payload) {
     const token = vx.getters.token
     const login = vx.getters.login

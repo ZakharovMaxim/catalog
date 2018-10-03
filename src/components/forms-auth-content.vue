@@ -16,7 +16,7 @@ import customInput from './custom-input'
 import errorMessage from './error-message'
 import Form from '../tools/Form'
 export default {
-  name: 'registration-form',
+  name: 'forms-auth-content',
   components: {btnPrimary, customInput, errorMessage},
   props: ['reverse'],
   computed: {
@@ -28,7 +28,8 @@ export default {
     }
   },
   watch: {
-    reverse () {
+    reverse (v) {
+      this.Form.changeValidateRule('passwordConfirm', 'ignore', !v)
       this.Form.reset()
     }
   },
@@ -70,6 +71,11 @@ export default {
       this.Form.errors.remove('passwordConfirm')
       this.Form.passwordConfirm = v
     },
+    /**
+     * this.strategy might be equal or login, or registration, send the right method inside Form.submit method
+     * if resolved clear form and remove page
+     * if rejected set error
+     */
     submit () {
       let request = this.Form.submit(this[this.strategy])
       if (!request) return
@@ -78,11 +84,14 @@ export default {
         this.Form.reset()
         this.$router.replace({query: ''})
       }).catch(e => {
-        this.Form.errors.setOne('form', 'Неверные данные')
+        this.Form.errors.setOne('form', e.message || 'Неверные данные')
       }).then(() => {
         this.loading = false
       })
     },
+    /**
+     * change blocks position
+     */
     changeDirection () {
       this.$emit('changeDirection')
     }
