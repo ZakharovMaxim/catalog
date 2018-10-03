@@ -6,7 +6,7 @@
           <div class="review__poster">
             <img :src="userLogo" alt="">
           </div>
-          <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex flex-column justify-content-center align-items-start">
             <div class="review__name">{{review.created_by.username}}</div>
             <div class="review__rate">
               <review-stars :stars='review.rate' />
