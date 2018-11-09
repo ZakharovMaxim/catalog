@@ -2,13 +2,13 @@ export default {
   'alphabetic': {
     text: 'А-Я',
     callback (a, b) {
-      return a.title > b.title
+      return a.title > b.title ? 1 : -1
     }
   },
   'alphabetic-reverse': {
     text: 'Я-А',
     callback (a, b) {
-      return a.title < b.title
+      return a.title > b.title ? -1 : 1
     }
   },
   'random': {

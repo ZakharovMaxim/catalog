@@ -1,13 +1,13 @@
 import axios from '../../configs/axiosConfig'
-
+import { SET_PRODUCTS, SET_SORT, SET_PRODUCT, SET_TOKEN, NEW_REVIEW, LOGIN, LOGOUT, REGISTRATION, INITIALIZE_TOKEN } from '../TYPES'
 export default {
   /**
    * fetch product list from api
    * @returns {Promise}
    */
-  setProducts ({commit}) {
+  [SET_PRODUCTS] ({commit}) {
     return axios.get('/products').then((data) => {
-      commit('setProducts', data.data)
+      commit(SET_PRODUCTS, data.data)
     })
   },
   /**
@@ -15,7 +15,7 @@ export default {
    * @param {Number} id product identifier
    * @returns {Promise}
    */
-  setProduct ({commit}, id) {
+  [SET_PRODUCT] ({commit}, id) {
     let products = []
     return axios.get('/products').then((data) => {
       products = [].concat(data.data)
@@ -24,28 +24,29 @@ export default {
       const product = products.find(p => p.id === +id)
       if (!product) throw new Error('Продукт не найден')
       product.reviews = data.data
-      commit('setProduct', product)
+      commit(SET_PRODUCT, product)
     })
   },
   /**
    * set sort name
    * @param {String} sort sort name
    */
-  setSort ({commit}, sort) {
-    commit('setSort', sort)
+  [SET_SORT] ({commit}, sort) {
+    console.log(sort)
+    commit(SET_SORT, sort)
   },
   /**
    * set login request to api
    * @param {Object} payload object whick contains login and password fields
    * @returns {Promise}
    */
-  login ({commit}, payload) {
+  [LOGIN] ({commit}, payload) {
     return axios.post('/login/', payload)
       .then(data => {
         if (!data.data.success) {
           throw new Error('Неверные данные')
         }
-        commit('setToken', {
+        commit(SET_TOKEN, {
           token: data.data.token || '',
           login: (data.data.token && payload.username) || ''
         })
@@ -56,13 +57,13 @@ export default {
    * @param {Object} payload object whick contains login and password fields
    * @returns {Promise}
    */
-  registration ({commit}, payload) {
+  [REGISTRATION] ({commit}, payload) {
     return axios.post('/register/', payload)
       .then(data => {
         if (!data.data.success) {
           throw new Error(data.data.message)
         }
-        commit('setToken', {
+        commit(SET_TOKEN, {
           token: data.data.token,
           login: payload.username
         })
@@ -71,10 +72,10 @@ export default {
   /**
    * get token and login from localstorage
    */
-  initializeToken ({commit}) {
+  [INITIALIZE_TOKEN] ({commit}) {
     const token = localStorage.getItem('token')
     const login = localStorage.getItem('login')
-    commit('setToken', {
+    commit(SET_TOKEN, {
       token,
       login
     })
@@ -82,15 +83,15 @@ export default {
   /**
    * remove token and login from localstorage and store
    */
-  logout ({commit}) {
-    commit('setToken', '')
+  [LOGOUT] ({commit}) {
+    commit(SET_TOKEN, '')
   },
   /**
    * send post request to api for create new review
    * @param {Object} payload object whick contains rate and text fields
    * @return {Promise}
    */
-  newReview (vx, payload) {
+  [NEW_REVIEW] (vx, payload) {
     const token = vx.getters.token
     const login = vx.getters.login
     return axios.post('/reviews/' + payload.product, payload, {
@@ -114,7 +115,7 @@ export default {
           rate: payload.rate,
           text: payload.text
         }
-        vx.commit('newReview', data)
+        vx.commit(NEW_REVIEW, data)
       })
   }
 }
