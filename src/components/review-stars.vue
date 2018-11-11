@@ -1,5 +1,5 @@
 <template>
-  <div class="review__stars">
+  <div class="review-stars">
     <svg width="90" height="19" viewBox="0 0 90 19" fill="none" xmlns="http://www.w3.org/2000/svg" @mouseleave='leave' :class='{selectable}'>
       <mask id="fill-stars">
         <path d="M9.08838 1.88171L10.6302 6.62691L10.7424 6.9724H11.1057H16.0951L12.0586 9.90509L11.7647 10.1186L11.877 10.4641L13.4188 15.2093L9.38227 12.2766L9.08838 12.0631L8.79449 12.2766L4.75798 15.2093L6.29979 10.4641L6.41204 10.1186L6.11815 9.90509L2.08164 6.9724H7.07104H7.43431L7.54657 6.62691L9.08838 1.88171Z" fill="white" stroke="#B9B9B9"/>

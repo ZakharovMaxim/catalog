@@ -6,14 +6,14 @@
         <div class="product-page__title">
          {{product.title}}
         </div>
-        <div class="row align-items-strech rating_row no-gutters">
+        <div class="row align-items-strech product-description no-gutters">
           <div class="col-md-6">
             <div class="card d-flex flex-column">
-              <div class="product-page__image">
+              <div class="product-description__image">
                <img :src="product.img" alt="">
               </div>
-              <div class="product-page__text">
-                <div class="product-page__text-title">Описание</div>
+              <div class="product-description__text">
+                <div class="product-description__title">Описание</div>
                 <p>{{product.text}}</p>
               </div>
             </div>
@@ -64,29 +64,28 @@ export default {
     background: #fff
     height: 100%
     padding: 10px
-  .rating_row
+  .product-description
     margin-bottom: 30px
     width: 100%
+    &__image
+      text-align: center
+      img
+        max-width: 100%
+    &__title
+      font-size: 26px
+      border-bottom: 1px solid #000
+      padding-bottom: 5px
+      margin-bottom: 30px
+      color: #000
   .product-page
     &__content
       max-width: 800px
       margin: 0 auto
       width: 100%
-    &__image
-      text-align: center
-      img
-        max-width: 100%
     &__title
       font-size: 16px
       color: $text-color
       text-align: center
       margin-bottom: 10px
       text-transform: uppercase
-    &__text
-      &-title
-        font-size: 26px
-        border-bottom: 1px solid #000
-        padding-bottom: 5px
-        margin-bottom: 30px
-        color: #000
 </style>
