@@ -4,6 +4,7 @@
  * @returns {String} pagetitle
  */
 function getTitle (vm) {
+  console.log(vm)
   const { pagetitle } = vm.$options
   if (pagetitle) {
     return typeof pagetitle === 'function'

@@ -8,6 +8,7 @@
     </span>
   </button>
 </template>
+
 <script>
 export default {
   name: 'btn-primary',

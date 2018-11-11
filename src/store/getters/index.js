@@ -14,7 +14,8 @@ export default {
     const sort = state.sort
     const strategy = strategies[sort]
     if (!sort || !strategy) return state.products
-    return state.products.slice().sort(strategy.callback)
+
+    return state.products.sort(strategy.callback)
   },
   product (state) {
     return state.product

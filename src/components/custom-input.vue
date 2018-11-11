@@ -1,6 +1,6 @@
 <template>
-  <div class="form-input">
-    <div class="form-label" v-if='label' :class='{"form-label--active": active}'>{{label}}</div>
+  <div class="form__input">
+    <div class="form__label" v-if='label' :class='{"form__label-active": active}'>{{label}}</div>
     <input :type="currentType" @input='input' @focus='focus' @blur='active = false' :value='value' @keydown.enter='submit'/>
     <error-message v-if='error' :text='error' />
     <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg" v-if='secure' :class='{"active": showSymbols}' @click='secureToggle'>
@@ -60,17 +60,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.form-input
+.form__input
   margin: 15.5px 0
   position: relative
-.form-label
+.form__label
   text-align: left
   text-transform: uppercase
   font-size: 10px
   font-weight: 700
   color: $light-gray
   transition: all .2s
-  &--active
+  &-active
     transform: translateY(-10px)
     color: #000
 input

@@ -1,8 +1,8 @@
 <template>
 <div class="card d-flex align-items-center justify-content-center rating">
-  <div class="rating-average d-flex flex-column align-items-center">
-    <div class="rating-average__content d-flex align-items-center justify-content-center flex-column">
-      <span class='rating-average__total'>
+  <div class="rating__average d-flex flex-column align-items-center">
+    <div class="rating__average-content d-flex align-items-center justify-content-center flex-column">
+      <span class='rating__average-total'>
         {{average}}
       </span>
       <span>
@@ -11,14 +11,14 @@
     </div>
     <review-stars :stars='average' />
   </div>
-  <div class="rating-items">
+  <div class="rating__items">
     <table>
-    <tr class='rating-item' v-for='(rate, key) in rating.items' :key='key'>
-      <td class="rating-item__title">{{key | capitalize}}</td>
-      <td class="rating-item__percent">
+    <tr class='rating__item' v-for='(rate, key) in rating.items' :key='key'>
+      <td class="rating__item-title">{{key | capitalize}}</td>
+      <td class="rating__item-percent">
         <div class="fill" :style='{width: percent(rate) + "%"}'></div>
       </td>
-      <td class="rating-item__total">
+      <td class="rating__item-total">
         {{rate}}
       </td>
     </tr>
@@ -66,38 +66,39 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.rating-average
-  margin-right: 10px
-  &__content
-    background: $primary-color
-    padding: 10px 15px
-    font-size: 14px
-    color: #fff
-    border-radius: 5px
-  &__total
-    font-size: 26px
-    font-weight: bold
-    margin-bottom: 5px
-    display: inline-block
-.rating-items
-  width: 80%
-  table
-    width: 100%
-    border-collapse: separate;
-    border-spacing: 8px;
-    td
-      vertical-align: middle
-.rating-item
-  &__title
-  &__percent
-    width: 60%
-    height: 5px
-    background: #eee
-    border-radius: 10px
-    .fill
-      height: 100%
-      background: $primary-color
-      border-radius: 10px
+.rating
+    &__average
+      margin-right: 10px
+      &-content
+        background: $primary-color
+        padding: 10px 15px
+        font-size: 14px
+        color: #fff
+        border-radius: 5px
+      &-total
+        font-size: 26px
+        font-weight: bold
+        margin-bottom: 5px
+        display: inline-block
+    &__items
+      width: 80%
+      table
+        width: 100%
+        border-collapse: separate;
+        border-spacing: 8px;
+        td
+          vertical-align: middle
+    &__item
+      &-title
+      &-percent
+        width: 60%
+        height: 5px
+        background: #eee
+        border-radius: 10px
+        .fill
+          height: 100%
+          background: $primary-color
+          border-radius: 10px
 @media screen and (max-width: 500px)
   .rating
     flex-wrap: wrap

@@ -82,8 +82,7 @@ export default {
       this.loading = true
       request.then(data => {
         this.Form.reset()
-        this.$router.push('/')
-        // this.$router.replace({query: ''})
+        this.$router.replace({query: ''})
       }).catch(e => {
         this.Form.errors.setOne('form', e.message || 'Неверные данные')
       }).then(() => {
