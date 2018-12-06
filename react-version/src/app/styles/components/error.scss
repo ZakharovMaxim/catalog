@@ -1,0 +1,10 @@
+.error-component {
+
+  &__message {
+    text-align: center;
+    font-size: 30px;
+    color: $error-color;
+    font-weight: bold;
+  }
+  
+}

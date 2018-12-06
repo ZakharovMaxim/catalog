@@ -1,0 +1,29 @@
+.product-review {
+  background: $grey;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  &__name {
+    font-size: 18px;
+  }
+
+  &__date {
+    font-size: 12px;
+    font-weight: 300;
+    justify-self: end;
+  }
+  
+  &__text {
+    margin-top: 10px;
+    word-wrap: break-word;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  &__rate {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  
+}

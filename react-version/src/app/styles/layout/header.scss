@@ -1,0 +1,43 @@
+.header {
+  margin-bottom: 35px;
+
+  &__content {
+    height: 81px;
+    background: $primary-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    
+    .container {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-content: center;
+    }
+
+  }
+  &__logo {
+    color: #fff;
+    text-align: center;
+    justify-self: self-start;
+  }
+  &__fake {
+    height: 81px;
+  }
+}
+.user-actions {
+  justify-self: self-end;
+  align-self: center;
+  a {
+    margin-left: 15px;
+    display: inline-block;
+    text-decoration: none;
+    color: $light-grey;
+    transition: color .2s;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
